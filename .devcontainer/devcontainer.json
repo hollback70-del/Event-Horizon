@@ -1,0 +1,19 @@
+{
+  "name": "Ubuntu Persistent SSH Environment",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  
+  "runArgs": [ "--init" ],
+  
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  
+  // tmux വഴി എസ്എച്ച്എസ് സെഷൻ ബാക്ക്ഗ്രൗണ്ടിൽ എപ്പോഴും റൺ ചെയ്യാൻ സെറ്റ് ചെയ്യുന്നു
+  "postCreateCommand": "tmux new-session -d -s persistent_ssh 'while true; do sleep 3600; done'"
+}
